@@ -143,8 +143,15 @@ CREATE TABLE role(
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
+INSERT INTO movies (title, year_released, mpaa_review, box_office_revenue, studio_id)
+VALUES 
+    ("Batman Begins","2005", 7.5, 8000000, 1),
+    ("The Dark Knight", "2008", 9.2, 10000000, 1),
+    ("The Dark Knight Rises", "2012", 8.9, 12000000, 1);
 
-
+INSERT INTO studios (company_name, hq_location, year_founded)
+VALUES
+    ("Goguen Productions", "Chicago, Illinois", "1993");
 
 -- Prints a header for the movies output
 .print "Movies"
