@@ -106,6 +106,7 @@ DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS roles;
 
+
 -- Create new tables, according to your domain model
 -- TODO!
 
@@ -113,8 +114,8 @@ CREATE TABLE movies(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT, 
     year_released TEXT,
-    mpaa_review INTEGER, 
-    box_office_revenue INTEGER
+    mpaa_rating TEXT, 
+    box_office_revenue INTEGER,
     studio_id INTEGER
 );
 
@@ -128,11 +129,10 @@ CREATE TABLE studios(
 CREATE TABLE actors(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name TEXT,
-    last_name TEXT, 
-    dob TEXT
+    last_name TEXT 
 ); 
 
-CREATE TABLE role( 
+CREATE TABLE roles( 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role_name TEXT,
     movie_id INTEGER,
@@ -143,15 +143,51 @@ CREATE TABLE role(
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
-INSERT INTO movies (title, year_released, mpaa_review, box_office_revenue, studio_id)
+INSERT INTO movies (title, year_released, mpaa_rating, box_office_revenue, studio_id)
 VALUES 
-    ("Batman Begins","2005", 7.5, 8000000, 1),
-    ("The Dark Knight", "2008", 9.2, 10000000, 1),
-    ("The Dark Knight Rises", "2012", 8.9, 12000000, 1);
+    ("Batman Begins","2005", "PG-13", 8000000, 1),
+    ("The Dark Knight", "2008", "PG-13", 10000000, 1),
+    ("The Dark Knight Rises", "2012", "PG-13", 12000000, 1);
 
 INSERT INTO studios (company_name, hq_location, year_founded)
 VALUES
-    ("Goguen Productions", "Chicago, Illinois", "1993");
+    ("Warner Bros.", "Chicago, Illinois", "1993");
+
+INSERT INTO actors (first_name, last_name)
+VALUES 
+    ("Christian", "Bale"),
+    ("Michael", "Caine"),
+    ("Liam", "Neeson"),
+    ("Katie", "Holmes"),
+    ("Gary", "Oldman"),
+    ("Heath", "Ledger"),
+    ("Aaron", "Eckhart"),
+    ("Maggie", "Gyhllenhal"),
+    ("Tom", "Hardy"),
+    ("Joseph", "Gordon-Levitt"),
+    ("Anne", "Hathaway");
+
+INSERT INTO roles (role_name, movie_id, actor_id)
+VALUES 
+    ("Bruce Wayne", 1, 1),
+    ("Bruce Wayne", 2, 1),
+    ("Bruce Wayne", 3, 1) ,
+    ("Alfred", 1, 2),
+    ("Alfred", 2, 2),
+    ("Alfred", 3, 2),
+    ("Raz al Ghul", 1, 3),
+    ("Rachel", 1, 4),
+    ("Gordon", 1, 5),
+    ("Gordon", 2, 5),
+    ("Gordon", 3, 5),
+    ("Joker", 2, 6),
+    ("Harvey", 2, 7),
+    ("Rachel", 2, 8),
+    ("Bane", 3, 9),
+    ("Robin", 3, 10),
+    ("Selina Kyle", 3, 11);
+
+
 
 -- Prints a header for the movies output
 .print "Movies"
