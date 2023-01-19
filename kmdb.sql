@@ -98,6 +98,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
+.width 25
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -190,15 +191,18 @@ VALUES
 
 
 -- Prints a header for the movies output
+.print ""
 .print "Movies"
 .print "======"
 .print ""
 
+-- The SQL statement for the movies output
+-- TODO!
+
 SELECT movies.title, movies.year_released, movies.mpaa_rating, studios.company_name
 FROM movies INNER JOIN studios ON movies.studio_id = studios.id;
 
--- The SQL statement for the movies output
--- TODO!
+
 
 -- Prints a header for the cast output
 .print ""
@@ -209,3 +213,13 @@ FROM movies INNER JOIN studios ON movies.studio_id = studios.id;
 
 -- The SQL statement for the cast output
 -- TODO!
+
+SELECT movies.title, actors.first_name, actors.last_name, roles.role_name
+FROM roles INNER JOIN actors ON roles.actor_id = actors.id
+           INNER JOIN movies ON roles.movie_id = movies.id
+ORDER BY movies.title;
+
+.print ""
+.print ""
+
+
